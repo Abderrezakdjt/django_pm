@@ -1,7 +1,7 @@
 from django import forms
 from . import models
 
-attrs = {'class': 'form-control', 'id': 'disabledInput', 'type': 'text', 'placeholder': 'Disabled text here...', }
+attrs = {'class': 'form-control ', 'id': 'disabledInput', 'type': 'text', 'placeholder': 'Disabled text here...', }
 
 
 class ProjectCreateFrom(forms.ModelForm):
