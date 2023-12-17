@@ -23,7 +23,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.username }}</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">{% trans 'Profile' %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans 'Profile' %}</a></li>
               <li><hr class="dropdown-divider"></li>
               <li> <form method="post" action="{% url 'logout' %}"> {% csrf_token %} <button type="submit" class="dropdown-item">{% trans 'Logout' %}</button> </form> </li>
             </ul>
@@ -38,7 +38,14 @@
           </div>
         </form>
         {% else %}
-        <a class="btn btn-outline-light" href="{% url 'login' %}"> {% trans 'Login' %}</a>
+         <a class="btn btn-outline-light mx" href="{% url 'register' %}">
+           {% trans 'Register' %}
+         </a>
+        <!-- Add some padding to create space -->
+        <span style="padding-right: 10px;"></span>
+        <a class="btn btn-outline-light" href="{% url 'login' %}">
+          {% trans 'Login' %}
+        </a>
         {% endif %}
       </div>
     </div>

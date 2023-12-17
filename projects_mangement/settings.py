@@ -72,6 +72,9 @@ TEMPLATES = [
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'projects_mangement.wsgi.application'
 
 
@@ -140,3 +143,4 @@ INTERNAL_IPS = [
     "127.0.0.1"
     # ...
 ]
+

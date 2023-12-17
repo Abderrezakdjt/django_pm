@@ -7,16 +7,16 @@
     <div class="row justify-content-md-center">
         <div class="card col-md-6 px-0">
             <div class="card-header text-center">
-                <h3 class="mb-0 py-2">{% trans 'Login' %}</h3>
+                <h3 class="mb-0 py-2">{% trans 'Register' %}</h3>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <form method="post">
+                    <form method="POST">
                         {% csrf_token %}
                         {% include 'common/form.html' with form=form %}
                         <div class="d-grid gap-2">
                             <button class="btn btn-success btn-block">
-                                {% translate 'Login' %}
+                                {% translate 'Register' %}
                             </button>
                         </div>
                     </form>
@@ -26,3 +26,8 @@
     </div>
 </div>
 {% endblock %}
+
+
+
+
+

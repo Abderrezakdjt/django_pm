@@ -1,8 +1,10 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, View, DeleteView
 from django.urls import reverse_lazy, reverse
 from . import models
 from . import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
+from django.views import View
 
 
 # Create your views here.
@@ -67,3 +69,12 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('Project_update', args=[self.object.project.id])
+
+
+
+
+
+
+
+
+
