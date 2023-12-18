@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf.global_settings import AUTH_USER_MODEL
 
-# Create your models here.
-
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
