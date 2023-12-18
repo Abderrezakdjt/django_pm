@@ -11,11 +11,12 @@
                 <div class="card-header">{% trans 'Profile Picture' %}</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="{% trans 'Profile Picture' %}">
+                    <img id="profile-image" class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="{% trans 'Profile Picture' %}">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">{% trans 'JPG or PNG no larger than 5 MB' %}</div>
-                    <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" type="button">{% trans 'Upload new image' %}</button>
+                    <!-- Profile picture upload button and input -->
+                    <input type="file" id="upload-input" style="display: none" accept="image/*">
+                    <button class="btn btn-success btn-block" onclick="document.getElementById('upload-input').click()" type="button">{% trans 'Upload new image' %}</button>
                 </div>
             </div>
         </div>
@@ -44,6 +45,32 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript for profile picture upload -->
+<script>
+    document.getElementById('upload-input').addEventListener('change', function (e) {
+        // Handle file upload here
+        var file = e.target.files[0];
+
+        if (file) {
+            // Assuming you have a function to handle the upload on the server side
+            uploadProfilePicture(file);
+        }
+    });
+
+    function uploadProfilePicture(file) {
+        // You need to implement the server-side code to handle the file upload
+        // Send an AJAX request or use a form submission to send the file to the server
+        // Update the profile image once the upload is complete
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById('profile-image').src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
 
 {% endblock %}
 

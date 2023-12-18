@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf.global_settings import AUTH_USER_MODEL
+from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
@@ -10,10 +11,10 @@ class Category(models.Model):
 
 
 class ProjectStatus(models.IntegerChoices):
-    PENDING = 1, 'Pending'
-    COMPLETED = 2, 'Completed'
-    POSTPONED = 3, 'Postponed'
-    CANCELED = 4, 'Canceled'
+    PENDING = 1, _("Pending")
+    COMPLETED = 2, _("Completed")
+    POSTPONED = 3, _("Postponed")
+    CANCELED = 4, _("Canceled")
 
 
 class Project(models.Model):
