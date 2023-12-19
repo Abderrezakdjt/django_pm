@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-18 19:06+0100\n"
+"POT-Creation-Date: 2023-12-19 10:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,29 +31,48 @@ msgstr "العنوان"
 msgid "description"
 msgstr "الوصف"
 
-#: .\projects\models.py:14
+#: .\projects\models.py:13 .\projects\models.py:14
+#, fuzzy
+#| msgid "category"
+msgid "Category"
+msgstr "التصنيف"
+
+#: .\projects\models.py:18
 msgid "Pending"
 msgstr "قيد التنفيد"
 
-#: .\projects\models.py:15
+#: .\projects\models.py:19
 msgid "Completed"
 msgstr "مكتمل"
 
-#: .\projects\models.py:16
+#: .\projects\models.py:20
 msgid "Postponed"
 msgstr "معلق"
 
-#: .\projects\models.py:17
+#: .\projects\models.py:21
 #, fuzzy
 #| msgid "Cancel"
 msgid "Canceled"
 msgstr "إلغاء"
 
+#: .\projects\models.py:40 .\projects\models.py:41
+#, fuzzy
+#| msgid "My Project"
+msgid "Project"
+msgstr "مشاريعي"
+
+#: .\projects\models.py:53 .\projects\models.py:54
+#, fuzzy
+#| msgid "New Task"
+msgid "Task"
+msgstr "مهمة جديدة"
+
 #: .\projects\templates\partials\footer.html:5
 msgid "(c) 2023 Abderrezak Djatou."
 msgstr "جميع حقوق محفوظة . جاطو عبدالرزاق  2023"
 
-#: .\projects\templates\partials\header.html:7
+#: .\projects\templates\partials\header.html:7 .\projects_mangement\urls.py:22
+#: .\projects_mangement\urls.py:23
 msgid "Projects Management"
 msgstr "ادارة مشروع"
 
@@ -61,45 +80,45 @@ msgstr "ادارة مشروع"
 msgid "Home"
 msgstr "الرئيسية"
 
-#: .\projects\templates\partials\header.html:26
-msgid "Profile"
-msgstr "الملف الشخصي"
-
-#: .\projects\templates\partials\header.html:28
-msgid "Logout"
-msgstr "تسجيل خروج"
-
-#: .\projects\templates\partials\header.html:30
-msgid "Delete Account"
-msgstr "حذف الحساب"
-
-#: .\projects\templates\partials\header.html:32
-msgid "Change Password"
-msgstr "تغيير كلمة المرور"
-
-#: .\projects\templates\partials\header.html:39
-msgid "Search"
-msgstr "بحث"
-
-#: .\projects\templates\partials\header.html:49
+#: .\projects\templates\partials\header.html:23
 msgid "Language"
 msgstr "اللغة"
 
-#: .\projects\templates\partials\header.html:56
+#: .\projects\templates\partials\header.html:30
 #: .\projects_mangement\settings.py:155
 msgid "Arabic"
 msgstr "العربية"
 
-#: .\projects\templates\partials\header.html:63
+#: .\projects\templates\partials\header.html:37
 #: .\projects_mangement\settings.py:154
 msgid "English"
 msgstr "الإنجليزية"
 
-#: .\projects\templates\partials\header.html:70
+#: .\projects\templates\partials\header.html:49
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+#: .\projects\templates\partials\header.html:51
+msgid "Logout"
+msgstr "تسجيل خروج"
+
+#: .\projects\templates\partials\header.html:53
+msgid "Delete Account"
+msgstr "حذف الحساب"
+
+#: .\projects\templates\partials\header.html:55
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#: .\projects\templates\partials\header.html:62
+msgid "Search"
+msgstr "بحث"
+
+#: .\projects\templates\partials\header.html:71
 msgid "Register"
 msgstr " حساب جديد"
 
-#: .\projects\templates\partials\header.html:75
+#: .\projects\templates\partials\header.html:76
 msgid "Login"
 msgstr "تسجيل الدخول"
 
