@@ -1,56 +1,85 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 {% block content %}
 
-<body>
+<link rel="stylesheet" href="{% static 'css/styles1.css' %}">
 <div class="container-xl px-4 mt-4">
-    <hr class="mt-0 mb-4">
-    <div class="row">
-        <div class="col-lg-4">
-            <!-- Profile picture card-->
-            <div class="card mb-4 mb-lg-0">
-                <div class="card-header">{% trans 'Profile Picture' %}</div>
-                <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="قيد عمل" alt="">
-                    <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">{% trans 'in progress now' %}</div>
-                    <!-- Profile picture upload button-->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- Profile picture card -->
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-header">{% trans 'Profile Picture' %}</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2"
+                             src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}https://via.placeholder.com/160{% endif %}"
+                             alt="Profile Picture" width="160" height="160">
+                        {{ form.profile_picture }}
+                        <p class="file-info">{% trans 'JPG or PNG no larger than 5 MB' %}</p>
+                        {% if profile.profile_picture %}
+                            <div class="form-group">
+                                <label for="delete_picture">{% trans 'Delete Current Picture' %}</label>
+                                <input type="checkbox" name="delete_picture" id="delete_picture">
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-8">
-            <!-- Account details card-->
-            <div class="card mb-4">
-                <div class="card-header">{% trans 'Account Details' %}</div>
-                <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
+
+            <!-- Account Details -->
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header">{% trans 'Account Details' %}</div>
+                    <div class="card-body">
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">{% trans 'Username' %}</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="{{ user.username }}" readonly>
+                            <label class="small mb-1" for="username">{{ form.username.label }}</label>
+                            {{ form.username }}
                         </div>
-                        {% for field in form %}
-                            <div class="mb-3">
-                                {{ field.label_tag }}
-                                {{ field }}
-                                {% if field.help_text %}
-                                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                                {% endif %}
-                                {% for error in field.errors %}
-                                    <div class="alert alert-danger">{{ error }}</div>
-                                {% endfor %}
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="first_name">{{ form.first_name.label }}</label>
+                                {{ form.first_name }}
                             </div>
-                        {% endfor %}
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="last_name">{{ form.last_name.label }}</label>
+                                {{ form.last_name }}      
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="organization_name">{{ form.organization_name.label }}</label>
+                                {{ form.organization_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="location">{{ form.location.label }}</label>
+                                {{ form.location }}
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="small mb-1" for="email">{{ form.email.label }}</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="phone_number">{{ form.phone_number.label }}</label>
+                                {{ form.phone_number }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="birthday">{{ form.birthday.label }}</label>
+                                {{ form.birthday }}
+                            </div>
+                        </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-success btn-block" type="submit">{% trans "Save" %}</button>
+                            <button class="btn btn-primary btn-block" type="submit">{% trans "Save" %}</button>
                             <a href="{% url 'delete_account' %}" class="btn btn-danger btn-block">{% trans "Delete Account" %}</a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
-</body>
 {% endblock %}

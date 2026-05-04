@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from .forms import CustomPasswordChangeForm
 from django.contrib import messages
-
+from .models import UserProfile
 
 @login_required
 def change_password(request):
@@ -16,42 +16,64 @@ def change_password(request):
         form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # لا تقم بتسجيل خروج المستخدم
-            messages.success(request, 'Password changed successfully.')  # إضافة رسالة النجاح
-            return render(request, 'change_password.html', {'form': form})  # إعادة عرض نفس الصفحة
+            update_session_auth_hash(request, user)  
+            messages.success(request, 'Password changed successfully.')  
+            return render(request, 'change_password.html', {'form': form})  
     else:
         form = CustomPasswordChangeForm(request.user)
     return render(request, 'change_password.html', {'form': form})
 
-
-
-
 class RegisterView(CreateView):
     form_class = UserRegisterForm
-    # success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)  # تسجيل دخول المستخدم بعد التسجيل
+        return super().form_valid(form)
 
     def get_success_url(self):
         login(self.request, self.object)
         return reverse_lazy('Project_list')
 
-
 @login_required
 def edit_profile(request):
+    user = request.user
+    profile, created = UserProfile.objects.get_or_create(user=user)
+
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            user = form.save(commit=False)
-            # Save profile picture if uploaded
+            user = form.save()
+
+            profile.organization_name = form.cleaned_data.get('organization_name')
+            profile.location = form.cleaned_data.get('location')
+            profile.phone_number = form.cleaned_data.get('phone_number')
+            profile.birthday = form.cleaned_data.get('birthday')
+
+            # تحقق مما إذا كانت صورة جديدة قد تم تحميلها
             if 'profile_picture' in request.FILES:
-                user.profile_picture = request.FILES['profile_picture']
-            user.save()
-            return redirect('profile')
+                # احذف الصورة القديمة إن وجدت
+                if profile.profile_picture:
+                    profile.delete_profile_picture()  # حذف الصورة القديمة
+
+                profile.profile_picture = request.FILES['profile_picture']  # تعيين الصورة الجديدة
+
+            if request.POST.get('delete_picture'):
+                profile.delete_profile_picture()  # حذف الصورة إذا اختار المستخدم ذلك
+
+            profile.save()
+            return redirect('profile')  
     else:
-        form = ProfileForm(instance=request.user)
-    return render(request, 'profile.html', {'form': form})
+        form = ProfileForm(instance=user)
 
+    # تهيئة الحقول في النموذج
+    form.fields['organization_name'].initial = profile.organization_name
+    form.fields['location'].initial = profile.location
+    form.fields['phone_number'].initial = profile.phone_number
+    form.fields['birthday'].initial = profile.birthday
 
+    return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 @login_required
 def delete_account(request):
@@ -64,5 +86,3 @@ def delete_account(request):
             return render(request, 'delete_account.html', {'error': 'Confirmation failed.'})
     else:
         return render(request, 'delete_account.html')
-
-

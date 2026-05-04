@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container-xl {
+    max-width: 1100px; /* Make sure this matches the bootstrap container */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensures all input fields have the same width and padding */
+input {
+    width: 100%; /* Change this to full width */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #fafafa;
+}
+
+input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.button-save {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.button-save:hover {
+    background-color: #45a049;
+}

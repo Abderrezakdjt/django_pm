@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'accounts',
     'projects',
+    'social',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
+]
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ar', 'Arabic'),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 ROOT_URLCONF = 'projects_management.urls'
@@ -69,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.context_processors.unread_notifications'
             ],
         },
     },
@@ -85,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_pm',
         'USER': 'postgres',
-        'PASSWORD': '1905',
+        'PASSWORD': '069825',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -142,6 +154,8 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 
 

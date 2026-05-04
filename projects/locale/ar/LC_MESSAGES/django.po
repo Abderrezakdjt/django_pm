@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-25 10:31+0100\n"
+"POT-Creation-Date: 2024-09-27 14:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,8 @@ msgid "Task"
 msgstr "مهمة"
 
 #: .\projects\templates\base.html:10
-#: .\projects\templates\partials\header.html:7
+#: .\projects\templates\partials\header.html:8 .\projects_management\urls.py:25
+#: .\projects_management\urls.py:26
 msgid "Projects Management"
 msgstr "إدارة المشاريع"
 
@@ -80,47 +81,67 @@ msgstr "تغيير كلمة المرور"
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
-#: .\projects\templates\partials\header.html:39
+#: .\projects\templates\partials\header.html:45
+msgid "Language"
+msgstr "لغة"
+
+#: .\projects\templates\partials\header.html:48
+msgid "Select Language"
+msgstr "اختر اللغة"
+
+#: .\projects\templates\partials\header.html:54
+msgid "English"
+msgstr "إنجليزي"
+
+#: .\projects\templates\partials\header.html:57
+msgid "Arabic"
+msgstr "العربية"
+
+#: .\projects\templates\partials\header.html:67
 msgid "Change Color"
 msgstr "تغيير اللون"
 
-#: .\projects\templates\partials\header.html:43
+#: .\projects\templates\partials\header.html:70
+msgid "Select Color"
+msgstr "حدد اللون"
+
+#: .\projects\templates\partials\header.html:71
 msgid "Primary"
 msgstr "الأزرق"
 
-#: .\projects\templates\partials\header.html:44
+#: .\projects\templates\partials\header.html:72
 msgid "Secondary"
 msgstr "الرمادي"
 
-#: .\projects\templates\partials\header.html:45
+#: .\projects\templates\partials\header.html:73
 msgid "Success"
 msgstr "أخضر"
 
-#: .\projects\templates\partials\header.html:46
+#: .\projects\templates\partials\header.html:74
 msgid "Danger"
 msgstr "الأحمر"
 
-#: .\projects\templates\partials\header.html:47
+#: .\projects\templates\partials\header.html:75
 msgid "Warning"
 msgstr "الأصفر"
 
-#: .\projects\templates\partials\header.html:48
+#: .\projects\templates\partials\header.html:76
 msgid "Info"
 msgstr "الأزرق فاتح"
 
-#: .\projects\templates\partials\header.html:49
+#: .\projects\templates\partials\header.html:77
 msgid "Dark"
 msgstr "الأسود"
 
-#: .\projects\templates\partials\header.html:60
+#: .\projects\templates\partials\header.html:88
 msgid "Search"
 msgstr "بحث"
 
-#: .\projects\templates\partials\header.html:70
+#: .\projects\templates\partials\header.html:98
 msgid "Register"
 msgstr "حساب جديد"
 
-#: .\projects\templates\partials\header.html:73
+#: .\projects\templates\partials\header.html:101
 msgid "Login"
 msgstr "تسجيل الدخول"
 

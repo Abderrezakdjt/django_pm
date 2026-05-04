@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+from django.views.i18n import set_language  # <-- Import this here
 
 urlpatterns = [
     path('', views.ProjectListView.as_view(), name='Project_list'),
@@ -10,4 +10,7 @@ urlpatterns = [
     path('task/create', views.TaskCreateView.as_view(), name='Task_create'),
     path('task/edit/<int:pk>', views.TaskUpdateView.as_view(), name='Task_update'),
     path('task/delete/<int:pk>', views.TaskDeleteView.as_view(), name='Task_delete'),
+    
+    # Language setting URL
+    path('set-language/', set_language, name='set_language'),
 ]

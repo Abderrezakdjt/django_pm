@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load i18n %} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">{% trans "قائمة الأصدقاء" %}</h4>
+        </div>
+        <div class="card-body">
+          {% if friends %}
+          <div class="list-group">
+            {% for friend in friends %}
+            <div
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <strong>{{ friend.username }}</strong>
+              </div>
+              <a
+                href="{% url 'social:chat_messages' friend.id %}"
+                class="btn btn-sm btn-primary"
+              >
+                {% trans "مراسلة" %}
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="text-center py-4">
+            <p class="text-muted">{% trans "لا يوجد أصدقاء بعد" %}</p>
+            <a href="{% url 'social:search_users' %}" class="btn btn-primary">
+              {% trans "البحث عن أصدقاء" %}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

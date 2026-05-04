@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% load i18n %} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow-sm">
+        <div
+          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        >
+          <h4 class="mb-0">{% trans "المحادثة مع" %} {{ friend.username }}</h4>
+          <a href="{% url 'social:friend_list' %}" class="btn btn-light btn-sm">
+            {% trans "رجوع" %}
+          </a>
+        </div>
+        <div
+          class="card-body"
+          id="chat-messages"
+          style="height: 400px; overflow-y: scroll"
+        >
+          {% for message in messages %}
+          <div
+            class="mb-3 {% if message.sender == request.user %}text-end{% endif %}"
+          >
+            <div
+              class="d-inline-block p-2 rounded {% if message.sender == request.user %}bg-primary text-white{% else %}bg-light{% endif %}"
+              style="max-width: 70%"
+            >
+              <strong>{{ message.sender.username }}</strong><br />
+              {{ message.content }}<br />
+              <small
+                class="{% if message.sender == request.user %}text-white-50{% else %}text-muted{% endif %}"
+              >
+                {{ message.created_at|date:"H:i" }}
+              </small>
+            </div>
+          </div>
+          {% empty %}
+          <div class="text-center py-4">
+            <p class="text-muted">
+              {% trans "لا توجد رسائل بعد. ابدأ المحادثة!" %}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="card-footer">
+          <form method="post">
+            {% csrf_token %} {{ form.content }}
+            <button type="submit" class="btn btn-primary mt-2">
+              {% trans "إرسال" %}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chatMessages = document.getElementById("chat-messages");
+  if (chatMessages) {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+</script>
+{% endblock %}
